@@ -11,15 +11,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
+import br.com.visaocr.domain.DadosNota;
 import br.com.visaocr.domain.Imagem;
 
 @Component
-public class ImagemDaoImpl implements ImagemDao {
+public class ImagemDaoJdbcImpl implements ImagemDao {
 
 	private final JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	public ImagemDaoImpl(JdbcTemplate jdbcTemplate) {
+	public ImagemDaoJdbcImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
@@ -42,6 +43,28 @@ public class ImagemDaoImpl implements ImagemDao {
 				return imagens;
 			}
 		});
+	}
+
+
+	@Override
+	public void atualizarImagem(Integer idImagem, String jsonResultado, DadosNota dadosNota) {
+		
+		StringBuilder sql = new StringBuilder("UPDATE TBL_DADOS_NOTA SET ");
+		sql.append("VALOR_NOTA = ?, ")
+		   .append("COO = ?, ")
+		   .append("CNPJ = ?, ")
+		   .append("DATA_NOTA = ? ");
+		sql.append("WHERE ID = ?");
+		
+		Object [] params = {
+			dadosNota.getValorTotal(),
+			dadosNota.getCoo(),
+			dadosNota.getCnpj(),
+			dadosNota.getData(),
+			idImagem
+		};
+		
+		this.jdbcTemplate.update(sql.toString(), params);
 	}
 	
 	
