@@ -31,9 +31,9 @@ public class BuscadorDeImagens {
 			ResultadoVisionAPI resultado = client.enviarImagemParaVisionAPI(imagem.getCaminho());
 			ProcessoExtracaoDadosNota extrator = new ProcessoExtracaoDadosNota(resultado.getTextoNota());
 			DadosNota dadosDaNota = extrator.extrairTodosOsDadosDaNota();
-
-			LOGGER.info("Dados formatados e extraidos: "+dadosDaNota.toString());
 			
+			LOGGER.info("Dados formatados e extraidos: "+dadosDaNota.toString());
+			dadosDaNota.setStatusNota(DadosNota.StatusNota.OK_OCR);
 			this.imagemDao.atualizarImagem(imagem.getId(), resultado.getJsonResultado().toString(), dadosDaNota);
 			
 			LOGGER.info("Dados da analise persistidos no banco de dados. Finalizando analise");
