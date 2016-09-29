@@ -72,10 +72,10 @@ public class ImagemDaoJdbcImpl implements ImagemDao {
 
 		StringBuilder sql = new StringBuilder("UPDATE TBL_DADOS_NOTA SET ");
 		sql.append("VALOR_NOTA = ?, ")
-		.append("COO = ?, ")
-		.append("CNPJ = ?, ")
-		.append("STATUS = ?, ")
-		.append("DATA_NOTA = ? ");
+		   .append("COO = ?, ")
+		   .append("CNPJ = ?, ")
+		   .append("STATUS = ?, ")
+		   .append("DATA_NOTA = ? ");
 		sql.append("WHERE ID = ?");
 		Number parse = null;
 		try {
