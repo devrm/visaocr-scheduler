@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.visaocr.condicoes.CondicaoArquivo;
 import br.com.visaocr.condicoes.CondicaoBancoDeDados;
-import br.com.visaocr.repositorio.RepositorioImagem;
-import br.com.visaocr.repositorio.RepositorioImagemArquivo;
-import br.com.visaocr.repositorio.RepositorioImagemJdbc;
+import br.com.visaocrcore.repositorio.RepositorioImagem;
+import br.com.visaocrcore.repositorio.RepositorioImagemArquivo;
+import br.com.visaocrcore.repositorio.RepositorioImagemJdbc;
 
 @Configuration
 public class ImagemRepoConfig {
