@@ -34,12 +34,12 @@ public class BuscadorDeImagens {
 			DadosNota dadosDaNota = extrator.extrairTodosOsDadosDaNota();
 			
 			dadosDaNota.setStatusNota(DadosNota.StatusNota.OK_OCR);
-			LOGGER.info("Dados formatados e extraidos: "+dadosDaNota.toString());
 			
 			if (! new VerificadorDadosNota(dadosDaNota).isDadosNotaValidos()) {
 				dadosDaNota.setStatusNota(DadosNota.StatusNota.INCONSISTENTE_OCR);
 			}
 			
+			LOGGER.info("Dados formatados e extraidos: "+dadosDaNota.toString());
 			this.imagemRepo.atualizarImagem(imagem, resultado.getTextoNota(), dadosDaNota);
 		
 			LOGGER.info("Finalizando analise");
